@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class StartupBust {
+
     private GameHelper helper = new GameHelper();
     private ArrayList<Startup> startups = new ArrayList<Startup>();
     private int numOfGuesses = 0;
@@ -24,20 +25,20 @@ public class StartupBust {
         for (Startup startup : startups) {
             ArrayList<String> newLocation = helper.placeStartup(3);
             startup.setLocationCells(newLocation);
-        }  // close for loop
-    }  // close setUpGame method
+        } // close for loop
+    } // close setUpGame method
 
     private void startPlaying() {
         while (!startups.isEmpty()) {
             String userGuess = helper.getUserInput("Enter a guess");
             checkUserGuess(userGuess);
-        }  // close while
+        } // close while
         finishGame();
-    }  // close startPlaying method
+    } // close startPlaying method
 
     private void checkUserGuess(String userGuess) {
         numOfGuesses++;
-        String result = "miss";
+        String result = "miss"; // assume a miss until told otherwise
 
         for (Startup startupToTest : startups) {
             result = startupToTest.checkYourself(userGuess);
@@ -46,13 +47,13 @@ public class StartupBust {
                 break;
             }
             if (result.equals("kill")) {
-                startups.remove(startupToTest);
+                startups.remove(startupToTest); // he's gone
                 break;
             }
-        }  // close for
+        } // close for
 
         System.out.println(result);
-    }  // close method
+    } // close method
 
     private void finishGame() {
         System.out.println("All Startups are dead! Your stock is now worthless");
@@ -63,11 +64,11 @@ public class StartupBust {
             System.out.println("Took you long enough. " + numOfGuesses + " guesses.");
             System.out.println("Fish are dancing with your options");
         }
-    }  // close method
+    } // close method
 
     public static void main(String[] args) {
         StartupBust game = new StartupBust();
         game.setUpGame();
         game.startPlaying();
-    }
+    } // close method
 }
